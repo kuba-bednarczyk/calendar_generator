@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*DO DRUKU */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .calendar-container {
+        width: 100%;
+        max-width: 794px;
+        height: auto;
+        padding: 20px;
+        margin: 0 auto;
+        background: white;
+        border: none;
+        box-shadow: none;
+    }
+
+    .calendar-content table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .calendar-content td,
+    .calendar-content th {
+        border: 1px solid #333;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .header,
+    .footer {
+        text-align: center;
+    }
+}
+
+
+body {
+    font-family: "Be Vietnam Pro", sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* FORM STYLES*/
+
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+
+.form-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+
+.calendar-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+    text-align: left;
+}
+
+.calendar-form input,
+.calendar-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    box-sizing: border-box;
+    background-color: transparent;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.calendar-form input:focus,
+.calendar-form select:focus {
+    border-color: #8a2be2;
+    outline: none;
+    box-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
+}
+
+/* Stylizacja przycisku */
+.calendar-form button {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #8a2be2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.calendar-form button:hover {
+    background-color: #6a1bb5;
+}
+
+.calendar-form button:focus {
+    box-shadow: 0 0 5px rgba(138, 43, 226, 0.7);
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        padding: 15px;
+    }
+
+    .form-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .calendar-form input,
+    .calendar-form select,
+    .calendar-form button {
+        font-size: 0.9rem;
+    }
+}
+
+/* print btn styles */
+#print-btn {
+    width: 150px;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #F40F02;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 30px;
+}
+
+#print-btn:hover {
+    background-color: #c60e01;
+}
+
+#print-btn  :focus {
+    box-shadow: 0 0 5px rgba(180, 2, 2, 0.7);
+    outline: none;
+}
+
+
+/* CELENDAR STYLES */
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.calendar-container {
+    margin: 30px 0;
+    padding: 10px 30px;
+    width: 1000px;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.header .logo img {
+    height: 12rem;
+}
+
+.header .calendar-info {
+    line-height: 1.8;
+    text-align: right;
+    padding-top: 10px;
+}
+
+.header .calendar-info h1 {
+    letter-spacing: 4px;
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.header .calendar-info p {
+    letter-spacing: 3px;
+    font-size: 1.6rem;
+    font-weight: 200;
+}
+
+.header .calendar-info h3 {
+    font-size: 2.8rem;
+    font-weight: 200;
+}
+
+.calendar-content {
+    width: 100%;
+}
+
+.calendar-content table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.calendar-content th,
+.calendar-content td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 0;
+    height: 100px;
+    box-sizing: border-box;
+}
+
+.calendar-content td {
+    position: relative;
+}
+
+.selected-hour {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #493D34;
+    font-size: 2rem;
+    padding: 3px 5px;
+    border-radius: 4px;
+}
+
+.calendar-content textarea:focus {
+    outline: 1px solid darkgrey;
+}
+
+.calendar-content td div {
+    position: absolute;
+    top: 12px;
+    right: 5px;
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.calendar-content th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    height: 50px;
+}
+
+.calendar-content td:nth-child(1) div {
+    color: red;
+    font-weight: bold;
+}
+
+.prev-month, .next-month {
+    background-color: rgba(224, 224, 224, 0.3);
+    color: rgba(0, 0, 0, 0.6);
+}
+
+
+.next-month select {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+.calendar-content select.hour-select {
+    width: 90%;
+    padding: 8px;
+    font-size: 0.8rem;
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-weight: 400;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: transparent;
+    margin: 0 auto;
+    margin-top: 15px;
+    display: block;
+    text-align: center;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+
+
+.table_header th {
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 500px;
+}
+
+.footer .img-container {
+    width: 50%;
+    height: 100%;
+}
+
+.footer .img-container img {
+
+    height: 100%;
+    left: 50%;
+}
+
+
+.footer .mass-info {
+    text-align: left;
+    width: 50%;
+}
+
+.footer .mass-info h1 {
+    letter-spacing: 4px;
+    font-size: 2.4rem;
+    line-height: 1.5;
+}
+
+.footer .mass-info p {
+    margin-top: 25px;
+    letter-spacing: 3px;
+    font-size: 2rem;
+
+}
+
+
+
+
+
