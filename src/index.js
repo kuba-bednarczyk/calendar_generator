@@ -1,6 +1,9 @@
 import html2canvas from 'html2canvas';
 import {jsPDF} from "jspdf";
 
+import logo from "./assets/logo.png";
+import footerPhoto from "./assets/jesuschrist.webp";
+
 document.querySelector('.calendar-form').addEventListener('submit', event => {
     event.preventDefault();
 
@@ -24,7 +27,7 @@ function generateCalendar(year, month, person) {
     let calendarHTML = `
         <div class="header">
           <div class="logo">
-            <img src="/assets/logo.png" alt="logo-parafia">
+            <img src=${logo} alt="logo-parafia">
           </div>
           <div class="calendar-info">
             <h1>MSZE GREGORIAŃSKIE</h1>
@@ -90,7 +93,7 @@ function generateCalendar(year, month, person) {
     calendarHTML += `
          <div class="footer">
             <div class="img-container">
-                <img src="/assets/jesuschrist.webp" alt="jesus-christ-resurected">
+                <img src=${footerPhoto} alt="jesus-christ-resurected">
             </div>
             <div class="mass-info">
                 <h1>MSZE ŚWIĘTE GREGORIAŃSKIE <br>
