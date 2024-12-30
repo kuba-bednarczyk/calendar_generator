@@ -60,7 +60,14 @@ function generateCalendar(year, month, person) {
         for (let j = 0; j < 7; j++) {
             if (i === 0 && j < firstDay) {
                 const prevDay = prevDaysInMonth - firstDay + j + 1;
-                row += `<td class="prev-month"><div>${prevDay}</div></td>`;
+                row += `<td class="prev-month">
+                            <div>${prevDay}</div>
+                            <select class="hour-select" style="display:none;">
+                                <option value="">Wybierz godzinę</option>
+                                ${hours.map(hour => `<option value="${hour}">${hour}</option>`).join('')}
+                            </select>
+                            <p class="selected-hour" style="display:none;"></p>
+                        </td>`;
             } else if (day > daysInMonth) {
                 row += `<td class="next-month">
                             <div>${nextMonthDay}</div>
@@ -105,6 +112,14 @@ function generateCalendar(year, month, person) {
     `;
 
     document.querySelector('.calendar-container').innerHTML = calendarHTML;
+
+    const prevMonthDays = document.querySelectorAll('.prev-month');
+    prevMonthDays.forEach(td => {
+        td.addEventListener('click', function () {
+            showSelect(this);
+        })
+    })
+
     const nextMonthDays = document.querySelectorAll('.next-month');
     nextMonthDays.forEach(td => {
         td.addEventListener('click', function () {
@@ -171,15 +186,14 @@ function downloadPrintableCalendar() {
         return;
     }
 
-    const dpi = 300; // Rozdzielczość do druku
-    const scaleFactor = dpi / 96; // Skalowanie
+    const dpi = 300;
+    const scaleFactor = dpi / 96;
 
     html2canvas(calendarElement, {
-        scale: scaleFactor, // Popraw jakość
-        useCORS: true, // zasoby zew.
+        scale: scaleFactor,
+        useCORS: true,
         logging: false
     }).then((canvas) => {
-        // Rozmiar strony A4 w milimetrach
         const pageWidth = 210;
         const pageHeight = 297;
 
